@@ -1,0 +1,32 @@
+<div>
+  <mat-progress-bar
+    mode="indeterminate"
+    *ngIf="stateService.isAsyncOperationRunning$ | async"
+    style="top: -25px"
+  ></mat-progress-bar>
+  <h1 mat-dialog-title>{{ dialogData.dialogHeader }}</h1>
+  <div mat-dialog-content>
+    <p>{{ dialogData.dialogContent }}</p>
+  </div>
+  <div mat-dialog-actions>
+    <button
+      mat-button
+      (click)="handleDialogSubmit()"
+      mat-raised-button
+      color="primary"
+      [disabled]="stateService.isAsyncOperationRunning$ | async"
+    >
+      {{ dialogData.confirmButtonLabel }}
+    </button>
+    <button
+      mat-button
+      cdkFocusInitial
+      (click)="closeDialog()"
+      [disabled]="stateService.isAsyncOperationRunning$ | async"
+      mat-raised-button
+      color="accent"
+    >
+      {{ dialogData.cancelButtonLabel }}
+    </button>
+  </div>
+</div>
